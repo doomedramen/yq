@@ -11,21 +11,32 @@ app.listen(3000, function () {
     slurm.scontrol(function (out) {
 
 
-      out.map(function (a) {
-        if (previous.filter(function (p) {
-            return p.JobId == a.JobId;
-          }).length < 1) {
-          console.log('new job', a.JobId);
+      out.map(function (o) {
+        if (previous.indexOf(o) < 0) {
+          console.log('new job', o.JobId);
         }
       });
 
       previous.map(function (p) {
-        if (out.filter(function (o) {
-            return o.JobId == p.JobId;
-          }).length < 1) {
+        if (out.indexOf(p) < 0) {
           console.log('finished job', p.JobId);
         }
       });
+      //out.map(function (a) {
+      //  if (previous.filter(function (p) {
+      //      return p.JobId == a.JobId;
+      //    }).length < 1) {
+      //    console.log('new job', a.JobId);
+      //  }
+      //});
+
+      //previous.map(function (p) {
+      //  if (out.filter(function (o) {
+      //      return o.JobId == p.JobId;
+      //    }).length < 1) {
+      //    console.log('finished job', p.JobId);
+      //  }
+      //});
 
       previous = out;
     });
