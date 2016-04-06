@@ -35,10 +35,15 @@ app.listen(3000, function () {
             var submitted = moment(SubmitTime, format);
             var started = moment(StartTime, format);
 
-            var diff = moment(started).unix() - moment(submitted).unix();
-            var formattedDiff = moment.utc(moment.duration(diff).asMilliseconds()).format("HH:mm:ss.SSS");
+            //var diff = moment(started).unix() - moment(submitted).unix();
+            //var formattedDiff = moment.utc(moment.duration(diff).asMilliseconds()).format("HH:mm:ss.SSS");
 
-            console.log('job', o.JobId, 'took', formattedDiff, 'before it started, (HH:mm:ss.SSS)');
+            var ms = started.diff(submitted);
+
+            var d = moment.duration(ms);
+            var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");
+
+            console.log('job', o.JobId, 'took', s, 'before it started');
 
 
           }
