@@ -35,7 +35,7 @@ app.listen(3000, function () {
             var submitted = moment(SubmitTime, format);
             var started = moment(o.StartTime, format);
 
-            console.log('job', o.JobId, 'submitted', submitted.format('YYYY MM DD'), 'started', started.format('YYYY MM DD'));
+            console.log('job', o.JobId, 'it took', started.diff(submitted), 'before it started');
 
 
           }
