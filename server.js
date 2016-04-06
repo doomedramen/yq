@@ -33,9 +33,12 @@ app.listen(3000, function () {
             var format = "YYYY-MM-DD HH:mm:ss";
 
             var submitted = moment(SubmitTime, format);
-            var started = moment(o.StartTime, format);
+            var started = moment(StartTime, format);
 
-            console.log('job', o.JobId, 'it took', started.diff(submitted), 'before it started');
+            var diff = moment(started).unix() - moment(submitted).unix();
+            var formattedDiff = moment.utc(moment.duration(diff).asMilliseconds()).format("HH:mm:ss.SSS");
+
+            console.log('job', o.JobId, 'it took', formattedDiff, 'before it started');
 
 
           }
