@@ -31,18 +31,21 @@ app.listen(3000, function () {
         if (match.length < 1) {
           console.log('finished job', p.JobId);
 
-          console.log('TODO', p);
-          //var startRep = p.StartTime.replace('T', ' ');
-          //console.log('started', startRep);
 
-          //var started = moment(startRep, "YYYY-MM-DD hh:mm:ss");//2016-04-07T14:31:10
-          //var now = moment();
+          var knownTime = p.StartTime == 'Unknown' ? p.SubmitTime : p.StartTime;
 
-          //var ms = now.diff(started);
-          //var d = moment.duration(ms);
-          //var s = d.format("hh:mm:ss");
+          //console.log('TODO', p);
+          var startRep = knownTime.replace('T', ' ');
+          console.log('started', startRep);
 
-          //console.log('duration:', s);
+          var started = moment(startRep, "YYYY-MM-DD hh:mm:ss");//2016-04-07T14:31:10
+          var now = moment();
+
+          var ms = now.diff(started);
+          var d = moment.duration(ms);
+          var s = d.format("hh:mm:ss");
+
+          console.log('duration:', s);
 
 
         }
