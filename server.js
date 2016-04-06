@@ -37,7 +37,7 @@ app.listen(3000, function () {
 
   setInterval(function () {
     reload();
-  }, 10000);
+  }, 1000);
 
   reload(); //run now too
 
