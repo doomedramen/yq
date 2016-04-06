@@ -9,30 +9,47 @@ app.listen(3000, function () {
   var firstRun = true;
   var previous = [];
 
+
+  var completed = [];
+
   function reload() {
     slurm.scontrol(function (out) {
-      if (firstRun) {
-        previous = out;
-        firstRun = false;
-        console.log(`found ${out.length} existing jobs`);
-      }
+
       out.map(function (o) {
-        var match = previous.filter(function (p) {
-          return p.JobId == o.JobId;
-        });
-        if (match.length < 1) {
-          console.log('new job', o.JobId);
+
+        if (o.JobState == 'COMPLETED') {
+          if (completed.filter(function (c) {
+              return c.JobId == o.JobId;
+            }).length < 1) {
+            console.log(o);
+            completed.push(o);
+          }
         }
       });
-      previous.map(function (p) {
-        var match = out.filter(function (o) {
-          return p.JobId == o.JobId;
-        });
-        if (match.length < 1) {
-          console.log('finished job', p.JobId);
-        }
-      });
-      previous = out;
+
+
+      //if (firstRun) {
+      //  previous = out;
+      //  firstRun = false;
+      //  console.log(`found ${out.length} existing jobs`);
+      //}
+      //out.map(function (o) {
+      //  var match = previous.filter(function (p) {
+      //    return p.JobId == o.JobId;
+      //  });
+      //  if (match.length < 1) {
+      //    console.log('new job', o.JobId);
+      //  }
+      //});
+      //previous.map(function (p) {
+      //  var match = out.filter(function (o) {
+      //    return p.JobId == o.JobId;
+      //  });
+      //  if (match.length < 1) {
+      //    console.log('finished job', p.JobId);
+      //  }
+      //});
+      //previous = out;
     });
   }
 
