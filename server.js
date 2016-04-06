@@ -35,15 +35,13 @@ app.listen(3000, function () {
             var submitted = moment(SubmitTime, format);
             var started = moment(StartTime, format);
 
-            //var diff = moment(started).unix() - moment(submitted).unix();
-            //var formattedDiff = moment.utc(moment.duration(diff).asMilliseconds()).format("HH:mm:ss.SSS");
-
             var diff = started.diff(submitted);
             var duration = moment.duration(diff);
             var human = duration.humanize();
 
-            console.log('job', o.JobId, human, 'before it ran');
-            console.log('aka', duration.get('days') + ' days ' + duration.get("hours") + " hours " + duration.get("minutes") + " minutes " + duration.get("seconds") + ' seconds')
+            var exact = duration.get('days') + ' days ' + duration.get("hours") + " hours " + duration.get("minutes") + " minutes " + duration.get("seconds") + ' seconds';
+            console.log('job', o.JobId, 'waited', human, 'before it started', exact);
+
           }
         }
       });
