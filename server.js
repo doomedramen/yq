@@ -38,12 +38,21 @@ app.listen(3000, function () {
             //var diff = moment(started).unix() - moment(submitted).unix();
             //var formattedDiff = moment.utc(moment.duration(diff).asMilliseconds()).format("HH:mm:ss.SSS");
 
-            var ms = started.diff(submitted);
+            var diff = started.diff(submitted);
 
-            var d = moment.duration(ms);
-            var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");
+            var days = parseInt(diff.asDays()); //84
 
-            console.log('job', o.JobId, 'took', s, 'before it started');
+            var hours = parseInt(diff.asHours()); //2039 hours, but it gives total hours in given miliseconds which is not expacted.
+
+            hours = hours - days * 24;  // 23 hours
+
+            var minutes = parseInt(diff.asMinutes()); //122360 minutes,but it gives total minutes in given miliseconds which is not expacted.
+
+            minutes = minutes - (days * 24 * 60 + hours * 60); //20 minutes.
+
+            var str = days + ' days ' + hours + ' hours ' + minutes + ' minutes ';
+
+            console.log('job', o.JobId, str, 'before it ran');
 
 
           }
