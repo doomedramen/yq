@@ -32,14 +32,16 @@ app.listen(3000, function () {
           });
           if (match.length < 1) {
 
-            var start = moment(p.StartTime);
+            console.log('finished job');
+
+            var start = moment(p.StartTime.replace('T', ' '), 'YYYY-MM-DD HH:mm:ss'); //2016-04-07 14:31:10
             var now = moment();
 
             var ms = now.diff(start);
             var d = moment.duration(ms);
             var s = d.format("hh:mm:ss");
 
-            console.log('finished job', p.JobId, 'duration:', s, 'HH:mm:ss');
+            console.log('duration:', s, 'HH:mm:ss');
           }
         });
 
