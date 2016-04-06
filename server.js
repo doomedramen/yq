@@ -30,7 +30,7 @@ app.listen(3000, function () {
       previous = out;
     });
 
-  }, 1000)
+  }, 10000)
 
 
 });
