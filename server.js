@@ -31,7 +31,10 @@ app.listen(3000, function () {
         if (match.length < 1) {
           console.log('finished job', p.JobId);
 
-          var started = moment(p.StartTime.replace('T', ' '), "YYYY-MM-DD HH:mm:ss");//2016-04-07T14:31:10
+          var startRep = p.StartTime.replace('T', ' ');
+          console.log(startRep);
+
+          var started = moment(startRep, "YYYY-MM-DD HH:mm:ss");//2016-04-07T14:31:10
           var now = moment();
 
           var ms = now.diff(started);
