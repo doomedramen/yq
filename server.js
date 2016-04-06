@@ -31,6 +31,7 @@ app.listen(3000, function () {
         if (match.length < 1) {
           console.log('finished job', p.JobId);
 
+          console.log('TODO', p.StartTime);
           var startRep = p.StartTime.replace('T', ' ');
           console.log('started', startRep);
 
