@@ -15,7 +15,6 @@ app.listen(3000, function () {
       if (firstRun) {
         previous = out;
         firstRun = false;
-
         console.log(`found ${out.length} existing jobs`);
       } else {
         out.map(function (o) {
@@ -36,8 +35,7 @@ app.listen(3000, function () {
             var start = moment(p.StartTime);
             var now = moment();
 
-
-            var ms = moment(now, "DD/MM/YYYY HH:mm:ss").diff(moment(start, "DD/MM/YYYY HH:mm:ss"));
+            var ms = now.diff(start);
             var d = moment.duration(ms);
             var s = d.format("hh:mm:ss");
 
