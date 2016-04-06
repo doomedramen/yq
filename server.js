@@ -14,28 +14,29 @@ app.listen(3000, function () {
       if (firstRun) {
         previous = out;
         firstRun = false;
+
+        console.log(`found ${out.length} existing jobs`);
+      } else {
+        out.map(function (o) {
+          var match = previous.filter(function (p) {
+            return p.JobId == o.JobId;
+          });
+          if (match.length < 1) {
+            console.log('new job', o.JobId);
+          }
+        });
+
+        previous.map(function (p) {
+          var match = out.filter(function (o) {
+            return p.JobId == o.JobId;
+          });
+          if (match.length < 1) {
+            console.log('finished job', p.JobId);
+          }
+        });
+
+        previous = out;
       }
-
-
-      out.map(function (o) {
-        var match = previous.filter(function (p) {
-          return p.JobId == o.JobId;
-        });
-        if (match.length < 1) {
-          console.log('new job', o.JobId);
-        }
-      });
-
-      previous.map(function (p) {
-        var match = out.filter(function (o) {
-          return p.JobId == o.JobId;
-        });
-        if (match.length < 1) {
-          console.log('finished job', p.JobId);
-        }
-      });
-
-      previous = out;
     });
   }
 
