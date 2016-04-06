@@ -21,8 +21,23 @@ app.listen(3000, function () {
           if (completed.filter(function (c) {
               return c.JobId == o.JobId;
             }).length < 1) {
-            console.log(o);
             completed.push(o);
+
+            //SubmitTime: '2016-04-06T15:13:52',
+            //StartTime: '2016-04-06T15:14:16',
+
+
+            var SubmitTime = o.SubmitTime.replace('T', ' ');
+            var StartTime = o.StartTime.replace('T', ' ');
+
+            var format = "YYYY-MM-DD HH:mm:ss";
+
+            var submitted = moment(SubmitTime, format);
+            var started = moment(o.StartTime, format);
+
+            console.log('job', o.JobId, 'submitted', submitted.format('YYYY MM DD'), 'started', started.format('YYYY MM DD'));
+
+
           }
         }
       });
