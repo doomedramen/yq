@@ -11,29 +11,20 @@ app.listen(3000, function () {
     slurm.scontrol(function (out) {
 
       out.map(function (o) {
-
-        if (o.JobId) {
-
-          var match = previous.filter(function (p) {
-            return p.JobId == o.JobId;
-          });
-
-          if (match.length < 1) {
-            console.log('new job', o.JobId);
-          }
+        var match = previous.filter(function (p) {
+          return p.JobId == o.JobId;
+        });
+        if (match.length < 1) {
+          console.log('new job', o.JobId);
         }
       });
 
       previous.map(function (p) {
-        if (p.JobId) {
-
-          var match = out.filter(function (o) {
-            return p.JobId == o.JobId;
-          });
-
-          if (match.length < 1) {
-            console.log('finished job', p.JobId);
-          }
+        var match = out.filter(function (o) {
+          return p.JobId == o.JobId;
+        });
+        if (match.length < 1) {
+          console.log('finished job', p.JobId);
         }
       });
 
