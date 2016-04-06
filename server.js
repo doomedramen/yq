@@ -7,7 +7,7 @@ app.listen(3000, function () {
 
   var previous = [];
 
-  setInterval(function () {
+  function reload() {
     slurm.scontrol(function (out) {
 
 
@@ -40,8 +40,12 @@ app.listen(3000, function () {
 
       previous = out;
     });
+  }
 
-  }, 10000)
+  setInterval(function () {
+    reload();
+  }, 10000);
 
+  reload() //run now too
 
 });
