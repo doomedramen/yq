@@ -35,7 +35,7 @@ app.listen(3000, function () {
         }
       });
 
-
+      previous = out;
     });
   }
 
