@@ -1,6 +1,9 @@
 var express = require('express');
 var app = express();
 var moment = require('moment');
+var fs = require('fs');
+
+var log = './LOG.txt';
 
 var slurm = require('./lib/slurm');
 app.listen(3000, function () {
@@ -22,6 +25,10 @@ app.listen(3000, function () {
               return c.JobId == o.JobId;
             }).length < 1) {
             completed.push(o);
+
+            fs.appendFile(log, o, function (err) {
+
+            });
 
             //SubmitTime: '2016-04-06T15:13:52',
             //StartTime: '2016-04-06T15:14:16',
