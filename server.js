@@ -39,12 +39,11 @@ app.listen(3000, function () {
             //var formattedDiff = moment.utc(moment.duration(diff).asMilliseconds()).format("HH:mm:ss.SSS");
 
             var diff = started.diff(submitted);
+            var duration = moment.duration(diff);
+            var human = duration.humanize();
 
-            var dur = moment.duration(diff).humanize();
-
-            console.log('job', o.JobId, dur, 'before it ran');
-
-
+            console.log('job', o.JobId, human, 'before it ran');
+            console.log('aka', duration.get('days') + ' days ' + duration.get("hours") + " hours " + duration.get("minutes") + " minutes " + duration.get("seconds") + ' seconds')
           }
         }
       });
