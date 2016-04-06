@@ -4,7 +4,7 @@ var moment = require('moment');
 
 var slurm = require('./lib/slurm');
 app.listen(3000, function () {
-  console.log('starting monitor');
+  console.log('starting monitor\n\n');
 
   //var firstRun = true;
   //var previous = [];
