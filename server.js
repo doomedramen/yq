@@ -8,23 +8,27 @@ app.listen(3000, function () {
   var previous = [];
 
   setInterval(function () {
-    var out = slurm.scontrol();
+    slurm.scontrol(function (out) {
 
-    out.map(function (a) {
-      if (previous.filter(function (p) {
-          return p.JobId == a.JobId;
-        }).length < 1) {
-        console.log('new job', a.JobId);
-      }
+
+      out.map(function (a) {
+        if (previous.filter(function (p) {
+            return p.JobId == a.JobId;
+          }).length < 1) {
+          console.log('new job', a.JobId);
+        }
+      });
+
+      previous.map(function (p) {
+        if (out.filter(function (o) {
+            return o.JobId == p.JobId;
+          }).length < 1) {
+          console.log('finished job', p.JobId);
+        }
+      });
+
+      previous = out;
     });
-
-    previous.map(function (p) {
-      if (out.filter(function (o) {
-          return o.JobId == p.JobId;
-        }).length < 1) {
-        console.log('finished job', p.JobId);
-      }
-    })
 
   }, 1000)
 
