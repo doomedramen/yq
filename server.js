@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var moment = require('moment');
 
 var slurm = require('./lib/slurm');
 app.listen(3000, function () {
@@ -31,7 +32,16 @@ app.listen(3000, function () {
             return p.JobId == o.JobId;
           });
           if (match.length < 1) {
-            console.log('finished job', p.JobId);
+
+            var start = moment(p.StartTime);
+            var now = moment();
+
+
+            var ms = moment(now, "DD/MM/YYYY HH:mm:ss").diff(moment(start, "DD/MM/YYYY HH:mm:ss"));
+            var d = moment.duration(ms);
+            var s = d.format("hh:mm:ss");
+
+            console.log('finished job', p.JobId, 'duration:', s, 'HH:mm:ss');
           }
         });
 
