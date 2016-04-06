@@ -37,10 +37,10 @@ app.listen(3000, function () {
 
             var diff = started.diff(submitted);
             var duration = moment.duration(diff);
-            var human = duration.humanize();
+            //var human = duration.humanize();
 
             var exact = duration.get('days') + ' days ' + duration.get("hours") + " hours " + duration.get("minutes") + " minutes " + duration.get("seconds") + ' seconds';
-            console.log('job', o.JobId, 'waited', human, 'before it started', exact);
+            console.log('JOB:', o.JobId, 'GROUP:', o.GroupId, 'WAITED:', exact, 'before it started');
 
           }
         }
