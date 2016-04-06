@@ -6,8 +6,8 @@ var slurm = require('./lib/slurm');
 app.listen(3000, function () {
   console.log('starting monitor');
 
-  var firstRun = true;
-  var previous = [];
+  //var firstRun = true;
+  //var previous = [];
 
 
   var completed = [];
@@ -40,7 +40,7 @@ app.listen(3000, function () {
             //var human = duration.humanize();
 
             var exact = duration.get('days') + ' days ' + duration.get("hours") + " hours " + duration.get("minutes") + " minutes " + duration.get("seconds") + ' seconds';
-            console.log('Job:', o.JobId, 'Account:', o.Account, 'Waited:', exact, 'before it started');
+            console.log('Job:', o.JobId, 'Account:', o.Account, 'Partition:',o.Partition, 'Waited:', exact, 'before it started');
 
           }
         }
