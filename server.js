@@ -40,7 +40,7 @@ app.listen(3000, function () {
             //var human = duration.humanize();
 
             var exact = duration.get('days') + ' days ' + duration.get("hours") + " hours " + duration.get("minutes") + " minutes " + duration.get("seconds") + ' seconds';
-            console.log('JOB:', o.JobId, 'GROUP:', o.GroupId, 'WAITED:', exact, 'before it started');
+            console.log('Job:', o.JobId, 'Account:', o.Account, 'Waited:', exact, 'before it started');
 
           }
         }
