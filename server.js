@@ -26,7 +26,7 @@ app.listen(3000, function () {
             }).length < 1) {
             completed.push(o);
 
-            fs.appendFile(log, o.STRING, function (err) {
+            fs.appendFile(log, o.STRING+'\n\n', function (err) {
 
             });
 
