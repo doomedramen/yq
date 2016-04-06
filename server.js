@@ -40,19 +40,9 @@ app.listen(3000, function () {
 
             var diff = started.diff(submitted);
 
-            var days = parseInt(diff.asDays()); //84
+            var dur = moment.duration(diff).humanize();
 
-            var hours = parseInt(diff.asHours()); //2039 hours, but it gives total hours in given miliseconds which is not expacted.
-
-            hours = hours - days * 24;  // 23 hours
-
-            var minutes = parseInt(diff.asMinutes()); //122360 minutes,but it gives total minutes in given miliseconds which is not expacted.
-
-            minutes = minutes - (days * 24 * 60 + hours * 60); //20 minutes.
-
-            var str = days + ' days ' + hours + ' hours ' + minutes + ' minutes ';
-
-            console.log('job', o.JobId, str, 'before it ran');
+            console.log('job', o.JobId, dur, 'before it ran');
 
 
           }
