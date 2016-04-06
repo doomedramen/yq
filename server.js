@@ -10,24 +10,30 @@ app.listen(3000, function () {
   function reload() {
     slurm.scontrol(function (out) {
 
-
       out.map(function (o) {
-        var match = previous.filter(function (p) {
-          return p.JobId == o.JobId;
-        });
 
-        if (match.length < 1) {
-          console.log('new job', o.JobId);
+        if (o.JobId) {
+
+          var match = previous.filter(function (p) {
+            return p.JobId == o.JobId;
+          });
+
+          if (match.length < 1) {
+            console.log('new job', o.JobId);
+          }
         }
       });
 
       previous.map(function (p) {
-        var match = out.filter(function (o) {
-          return p.JobId == o.JobId;
-        });
+        if (p.JobId) {
 
-        if (match.length < 1) {
-          console.log('finished jon', p.JobId);
+          var match = out.filter(function (o) {
+            return p.JobId == o.JobId;
+          });
+
+          if (match.length < 1) {
+            console.log('finished job', p.JobId);
+          }
         }
       });
 
