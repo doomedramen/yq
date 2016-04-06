@@ -26,7 +26,7 @@ app.listen(3000, function () {
             }).length < 1) {
             completed.push(o);
 
-            fs.appendFile(log, o.STRING+'\n\n', function (err) {
+            fs.appendFile(log, o.STRING + '\n\n', function (err) {
 
             });
 
@@ -47,7 +47,7 @@ app.listen(3000, function () {
             //var human = duration.humanize();
 
             var exact = duration.get('days') + ' days ' + duration.get("hours") + " hours " + duration.get("minutes") + " minutes " + duration.get("seconds") + ' seconds';
-            console.log('Job:', o.JobId, 'Account:', o.Account, 'Partition:', o.Partition, 'Memory:', o.MinMemoryNode, 'Waited:', exact, 'before it started');
+            console.log('Job:', o.JobId, 'Account:', o.Account, 'Partition:', o.Partition, 'Memory:', o.MinMemoryNode || o.Mem, 'Waited:', exact, 'before it started');
 
           }
         }
