@@ -38,7 +38,7 @@ app.listen(3000, function () {
             var diff = moment(started).unix() - moment(submitted).unix();
             var formattedDiff = moment.utc(moment.duration(diff).asMilliseconds()).format("HH:mm:ss.SSS");
 
-            console.log('job', o.JobId, 'it took', formattedDiff, 'before it started');
+            console.log('job', o.JobId, 'took', formattedDiff, 'before it started, (HH:mm:ss.SSS)');
 
 
           }
