@@ -5,10 +5,17 @@ var slurm = require('./lib/slurm');
 app.listen(3000, function () {
   console.log('starting monitor');
 
+  var firstRun = true;
   var previous = [];
 
   function reload() {
     slurm.scontrol(function (out) {
+
+      if (firstRun) {
+        previous = out;
+        firstRun = false;
+      }
+
 
       out.map(function (o) {
         var match = previous.filter(function (p) {
@@ -28,7 +35,7 @@ app.listen(3000, function () {
         }
       });
 
-      previous = out;
+
     });
   }
 
