@@ -31,18 +31,18 @@ app.listen(3000, function () {
         if (match.length < 1) {
           console.log('finished job', p.JobId);
 
-          console.log('TODO', p.StartTime);
-          var startRep = p.StartTime.replace('T', ' ');
-          console.log('started', startRep);
+          console.log('TODO', p);
+          //var startRep = p.StartTime.replace('T', ' ');
+          //console.log('started', startRep);
 
-          var started = moment(startRep, "YYYY-MM-DD hh:mm:ss");//2016-04-07T14:31:10
-          var now = moment();
+          //var started = moment(startRep, "YYYY-MM-DD hh:mm:ss");//2016-04-07T14:31:10
+          //var now = moment();
 
-          var ms = now.diff(started);
-          var d = moment.duration(ms);
-          var s = d.format("hh:mm:ss");
+          //var ms = now.diff(started);
+          //var d = moment.duration(ms);
+          //var s = d.format("hh:mm:ss");
 
-          console.log('duration:', s);
+          //console.log('duration:', s);
 
 
         }
