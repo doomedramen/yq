@@ -17,8 +17,9 @@ var output = [];
 
 async.eachSeries(jobRange, function (jobID, next) {
   var onEach = function (data) {
-    //console.log(data);
-    output.push(output);
+    data.map(function (d) {
+      output.push(data);
+    });
     next();
   };
   slurm.sacct(jobID, onEach);
@@ -28,7 +29,7 @@ async.eachSeries(jobRange, function (jobID, next) {
 
   var CSVOUT = csv(output);
 
-  console.log(CSVOUT);
+  //console.log(CSVOUT);
 
   fs.writeFile("./output.csv", CSVOUT, function (err) {
     if (err) {
