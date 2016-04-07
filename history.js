@@ -1,6 +1,7 @@
 var slurm = require('./lib/slurm');
 var async = require('async');
 var csv = require('to-csv');
+var fs = require('fs');
 
 var MIN = 630000;
 var MAX = 636600;
@@ -29,5 +30,11 @@ async.eachSeries(jobRange, function (jobID, next) {
 
   console.log(CSVOUT);
 
+  fs.writeFile("./output.csv", CSVOUT, function (err) {
+    if (err) {
+      return console.log(err);
+    }
+    console.log("The file was saved!");
+  });
   console.log('DONE', err);
 });
