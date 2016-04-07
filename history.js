@@ -18,14 +18,12 @@ var output = [];
 async.eachSeries(jobRange, function (jobID, next) {
   var onEach = function (data) {
     data.map(function (d) {
-      output.push(data);
+      output.push(d);
     });
     next();
   };
   slurm.sacct(jobID, onEach);
 }, function (err) {
-
-  //TODO write to file
 
   var fields = ['Submit', 'Start', 'Partition', 'Account', 'ReqMem', 'NNodes'];
 
