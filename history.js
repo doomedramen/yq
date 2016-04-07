@@ -12,15 +12,21 @@ for (var i = MIN; i <= MAX; i++) {
 
 var output = [];
 
-jobRange.map(function (i) {
+//jobRange.map(function (i) {
+//
+//  var onEach = function (data) {
+//
+//    //output.push(data);
+//
+//    console.log(data);
+//
+//  };
+//
+//  slurm.sacct(i, onEach);
+//});
 
-  var onEach = function (data) {
 
-    //output.push(data);
-
-    console.log(data);
-
-  };
-
-  slurm.sacct(i, onEach);
-});
+var onEach = function (data) {
+  console.log(data);
+};
+slurm.sacct(636600, onEach);
