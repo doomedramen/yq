@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/wookoouk/yq#readme",
   "dependencies": {
+    "async": "^2.0.0-rc.2",
     "express": "^4.13.4",
     "moment": "^2.12.0"
   }

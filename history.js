@@ -1,4 +1,5 @@
 var slurm = require('./lib/slurm');
+var async = require('async');
 
 var MIN = 630000;
 var MAX = 636600;
@@ -12,17 +13,21 @@ for (var i = MIN; i <= MAX; i++) {
 
 var output = [];
 
-jobRange.map(function (i) {
+//jobRange.map(function (i) {
+//  var onEach = function (data) {
+//    console.log(data);
+//  };
+//  slurm.sacct(i, onEach);
+//});
 
+async.eachSeries(jobRange, function (jobID, next) {
   var onEach = function (data) {
-
-    //output.push(data);
-
     console.log(data);
-
+    next();
   };
-
-  slurm.sacct(i, onEach);
+  slurm.sacct(jobID, onEach);
+}, function (err) {
+  console.log('DONE', err);
 });
 
 
