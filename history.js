@@ -25,10 +25,10 @@ async.eachSeries(jobRange, function (jobID, next) {
   slurm.sacct(jobID, onEach);
 }, function (err) {
 
-  var fields = ['Submit', 'Start', 'Partition', 'Account', 'ReqMem', 'NNodes'];
+  var fields = ['Submit', 'Start', 'Wait', 'Partition', 'Account', 'ReqMem', 'NNodes'];
 
 
-  json2csv({data: output, fields: fields}, function (err, csv) {
+  json2csv({data: output, fields: fields, quotes: ''}, function (err, csv) {
     if (err) {
       console.error(err);
     } else {
