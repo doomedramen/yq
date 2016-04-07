@@ -4,7 +4,7 @@ var fs = require('fs');
 var json2csv = require('json2csv');
 
 var MIN = 630000;
-var MAX = 636600;
+var MAX = 631000;
 
 var jobRange = [];
 
