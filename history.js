@@ -13,13 +13,6 @@ for (var i = MIN; i <= MAX; i++) {
 
 var output = [];
 
-//jobRange.map(function (i) {
-//  var onEach = function (data) {
-//    console.log(data);
-//  };
-//  slurm.sacct(i, onEach);
-//});
-
 async.eachSeries(jobRange, function (jobID, next) {
   var onEach = function (data) {
     console.log(data);
@@ -29,9 +22,3 @@ async.eachSeries(jobRange, function (jobID, next) {
 }, function (err) {
   console.log('DONE', err);
 });
-
-
-//var onEach = function (data) {
-//  console.log(data);
-//};
-//slurm.sacct(636600, onEach);
