@@ -3,8 +3,8 @@ var async = require('async');
 var fs = require('fs');
 var json2csv = require('json2csv');
 
-var MIN = 630000;
-var MAX = 631000;
+var MIN = 320000;
+var MAX = 631600;
 
 var jobRange = [];
 
